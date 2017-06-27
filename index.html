@@ -265,13 +265,13 @@
         </div>
 
         <div id="end-container">
-            <div id="won" onclick="intent()">
+            <div id="won">
                 Tubli, sinu võit! Aitäh, et kaitsed loodust ja päästsid puu pahalaste käest.
-                Järgmine kord ei pruugi nii hästi minna. Allkirjasta tõotus loodust hoida.
+                Järgmine kord ei pruugi nii hästi minna. Hoiame loodust.
             </div>
-            <div id="lost" onclick="intent()">
+            <div id="lost">
                 Mäng läbi! Kahjuks said pahalased võitu ja maailm muutus halliks ja kõledaks.
-                Reaalses elus on meil veel lootust. Allkirjasta tõotus loodust hoida.
+                Reaalses elus on meil veel lootust. Hoiame loodust.
             </div>
             <span id="share">
                 Kutsu oma sõbrad appi loodust hoidma. Jaga mängu.
@@ -387,10 +387,6 @@
 
             function random(from, to) {
                 return Math.round(Math.random() * to) + from
-            }
-
-            function intent() {
-                window.open('new tab', '_blank').focus()
             }
         </script>
 
