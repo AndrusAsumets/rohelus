@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Designed and developed by Andrus Asumets (andrus@asumets.ee) in 2017. License: MIT. -->
+        <!-- Designed and developed by Andrus Asumets and Merit Valdsalu (andrus@asumets.ee) in 2017. License: MIT. -->
         <meta charset="utf-8">
 
         <title>Rohelus</title>
@@ -16,17 +16,17 @@
 		<meta name="application-name" content=">Rohelus" />
 
 		<!-- for Facebook -->
-		<meta property="og:image" content="http://asumets.ee/public/brainyoga/share4.png" />
-		<meta property="og:url" content="https://brain.yoga" />
+		<meta property="og:image" content="http://rohel.us/public/img/share.png" />
+		<meta property="og:url" content="https://rohel.us" />
 		<meta property="og:description" content="Muuda maailm rohelisemaks" />
 
 		<!-- for Twitter -->
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:title" content=">Rohelus" />
 		<meta name="twitter:description" content="Muuda maailm rohelisemaks" />
-		<meta name="twitter:image" content="http://asumets.ee/public/brainyoga/share4.png" />
+		<meta name="twitter:image" content="http://rohel.us/public/img/share.png" />
 
-		<link rel="shortcut icon" type="image/png" href="http://asumets.ee/public/brainyoga/favicon.png">
+		<link rel="shortcut icon" type="image/png" href="http://rohel.us/public/img/favicon.png">
         <link href="https://fonts.googleapis.com/css?family=Short+Stack" rel="stylesheet">
 
         <script src="/public/js/fastclick.js"></script>
@@ -57,6 +57,7 @@
             }
 
             #score {
+                display: none;
                 position: fixed;
                 left: 16px;
                 top: 16px;
@@ -74,6 +75,7 @@
             }
 
             #counter {
+                display: none;
                 position: fixed;
                 right: 16px;
                 top: 16px;
@@ -99,10 +101,10 @@
             }
 
             #end-container {
-                display: none;
+                //display: none;
             }
 
-            #intro, #won, #lost, #share {
+            #intro, #won, #lost {
                 color: black;
                 background-color: white;
                 padding: 16px;
@@ -134,13 +136,13 @@
             }
 
             #share {
-                background-color: blue;
-                color: white;
-            }
-
-            #share:hover {
+                display: none;
+                padding: 16px;
+                border-radius: 8px;
+                margin-bottom: 24px;
                 background-color: white;
                 color: blue;
+                border: 1px solid blue;
             }
 
             #start, #restart {
@@ -241,6 +243,7 @@
     </head>
 
     <body>
+        <div id="fb-root"></div>
         <div id="background"></div>
         <div id="game"></div>
         <div id="score">Skoor</div>
@@ -265,9 +268,10 @@
                 Mäng läbi! Kahjuks said pahalased võitu ja maailm muutus halliks ja kõledaks.
                 Reaalses elus on meil veel lootust. Allkirjasta tõotus loodust hoida.
             </div>
-            <div id="share" onclick="share()">
+            <span id="share">
                 Kutsu oma sõbrad appi loodust hoidma. Jaga mängu.
-            </div>
+                <div class="fb-share-button" data-href="http://rohel.us" data-layout="button_count"></div>
+            </span>
         </div>
 
         <script type="text/javascript">
@@ -290,14 +294,19 @@
                 var lost = document.getElementById('lost')
                 var background = document.getElementById('background')
                 var game = document.getElementById('game')
+                var _score = document.getElementById('score')
                 var counter = document.getElementById('counter')
+                var share = document.getElementById('share')
 
                 game.innerHTML = ''
+                _score.style.display = 'block'
+                counter.style.display = 'block'
                 start.style.display = 'none'
                 end.style.display = 'none'
                 restart.style.display = 'none'
                 won.style.display = 'none'
                 lost.style.display = 'none'
+                share.style.display = 'none'
 
                 function round() {
                     var player = document.createElement('div')
@@ -326,6 +335,7 @@
                 function finish() {
                     end.style.display = 'block'
                     restart.style.display = 'block'
+                    share.style.display = 'block'
 
                     if (score >= toWin) won.style.display = 'block'
                     else lost.style.display = 'block'
@@ -370,7 +380,6 @@
                 return { width: width, height: height }
             }
 
-
             function random(from, to) {
                 return Math.round(Math.random() * to) + from
             }
@@ -386,9 +395,16 @@
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-          ga('create', 'UA-100041455-1', 'auto');
+          ga('create', 'UA-101750314-1', 'auto');
           ga('send', 'pageview');
-
         </script>
+
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
     </body>
 </html>
