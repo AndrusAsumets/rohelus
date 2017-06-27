@@ -32,6 +32,16 @@
         <script src="/public/js/fastclick.js"></script>
 
         <style>
+            .color {
+                transition: filter 1.5s;
+                filter: grayscale(0%);
+            }
+
+            .grayscale {
+                transition: filter 1.5s;
+                filter: grayscale(100%) !important;
+            }
+
             body, html {
                 width: 100vw;
                 height: 100vh;
@@ -101,7 +111,7 @@
             }
 
             #end-container {
-                //display: none;
+                display: none;
             }
 
             #intro, #won, #lost {
@@ -303,6 +313,7 @@
                 var counter = document.getElementById('counter')
                 var share = document.getElementById('share')
 
+                background.className = ''
                 game.innerHTML = ''
                 _score.style.display = 'block'
                 counter.style.display = 'block'
@@ -342,8 +353,13 @@
                     restart.style.display = 'block'
                     share.style.display = 'block'
 
-                    if (score >= toWin) won.style.display = 'block'
-                    else lost.style.display = 'block'
+                    if (score >= toWin) {
+                        won.style.display = 'block'
+                    }
+                    else {
+                        lost.style.display = 'block'
+                        background.className = 'grayscale'
+                    }
                 }
 
                 var durationInterval = setInterval(function() {
